@@ -33,7 +33,7 @@ def cmd_list(args, config):
         accounts=get_included_accounts(args, config),
         only_unclaimed=args.only_unclaimed
     )
-    eras_payment_info = OrderedDict(sorted(eras_payment_info.items(), reverse=True))
+    eras_payment_info = OrderedDict(sorted(eras_payment_info.items(), reverse=False))
 
     for era_index, era in eras_payment_info.items():
         print(f"Era: {era_index}")
@@ -74,7 +74,7 @@ def cmd_pay(args, config):
         accounts=get_included_accounts(args, config),
         only_unclaimed=True
     )
-    eras_payment_info = OrderedDict(sorted(eras_payment_info.items(), reverse=True))
+    eras_payment_info = OrderedDict(sorted(eras_payment_info.items(), reverse=False))
 
     if len(eras_payment_info.keys()) == 0:
         print(f"There are no rewards to claim in the last {depth} era(s)")
