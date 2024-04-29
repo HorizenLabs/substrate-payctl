@@ -20,11 +20,12 @@ def cmd_list(args, config):
         storage_function='ActiveEra'
     )
     active_era = active_era.value['index']
+    print(f"Active era: {active_era}\n")
 
     depth = get_config(args, config, 'deptheras')
     depth = int(depth) if depth is not None else 84
 
-    start = active_era - depth
+    start = max(active_era - depth, 0)
     end = active_era
 
     eras_payment_info = get_eras_payment_info_filtered(
@@ -57,6 +58,7 @@ def cmd_pay(args, config):
         storage_function='ActiveEra'
     )
     active_era = active_era.value['index']
+    print(f"Active era: {active_era}\n")
 
     depth = get_config(args, config, 'deptheras')
     depth = int(depth) if depth is not None else 84
@@ -64,7 +66,7 @@ def cmd_pay(args, config):
     minEras = get_config(args, config, 'mineras')
     minEras = int(minEras) if minEras is not None else 5
 
-    start = active_era - depth
+    start = max(active_era - depth, 0)
     end = active_era
 
     eras_payment_info = get_eras_payment_info_filtered(
